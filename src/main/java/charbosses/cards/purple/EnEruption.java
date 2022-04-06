@@ -18,15 +18,26 @@ import java.util.ArrayList;
 public class EnEruption extends AbstractBossCard {
     public static final String ID = "downfall_Charboss:Eruption";
     private static final CardStrings cardStrings;
+    boolean realWrath = false;
 
     public EnEruption() {
         super(ID, cardStrings.NAME, "purple/attack/eruption", 2, cardStrings.DESCRIPTION, CardType.ATTACK, CardColor.PURPLE, CardRarity.BASIC, CardTarget.ENEMY, AbstractMonster.Intent.ATTACK_BUFF);
         this.baseDamage = 9;
     }
 
+    public EnEruption(boolean realWrath) {
+        this();
+        this.realWrath = realWrath;
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-        this.addToBot(new EnemyChangeStanceAction("Wrath"));
+        if (realWrath) {
+            this.addToBot(new EnemyChangeStanceAction("Real Wrath"));
+        }
+        else {
+            this.addToBot(new EnemyChangeStanceAction("Wrath"));
+        }
     }
 
     @Override

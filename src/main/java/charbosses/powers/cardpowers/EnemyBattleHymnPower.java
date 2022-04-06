@@ -26,7 +26,9 @@ public class EnemyBattleHymnPower extends AbstractPower {
 
     public void atStartOfTurnPostDraw() {
 
-        this.addToBot(new EnemyMakeTempCardInHandAction(new EnSmite(), this.amount, false));
+        EnSmite smite = new EnSmite();
+        System.out.println("==== Battle smite");
+        this.addToBot(new EnemyMakeTempCardInHandAction(smite, this.amount, false));
 
     }
 

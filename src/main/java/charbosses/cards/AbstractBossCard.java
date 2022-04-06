@@ -5,9 +5,15 @@ import basemod.abstracts.CustomCard;
 import charbosses.bosses.AbstractCharBoss;
 import charbosses.bosses.Watcher.CharBossWatcher;
 import charbosses.cards.colorless.EnHandOfGreedHermitNecro;
+import charbosses.cards.purple.EnCarveReality;
+import charbosses.cards.purple.EnDevotion;
+import charbosses.cards.purple.EnEruption;
+import charbosses.cards.purple.EnSmite;
 import charbosses.orbs.AbstractEnemyOrb;
 import charbosses.powers.cardpowers.EnemyStormPower;
 import charbosses.stances.EnDivinityStance;
+import charbosses.stances.EnRealWrathStance;
+import charbosses.stances.EnWrathStance;
 import charbosses.ui.EnemyEnergyPanel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -310,9 +316,20 @@ public abstract class AbstractBossCard extends AbstractCard {
         }
         if (mo != null) {
             this.damage = MathUtils.floor(calculateDamage(mo, player, this.baseDamage));
-            this.intentDmg = MathUtils.floor(manualCustomDamageModifierMult * calculateDamage(mo, player, this.baseDamage + customIntentModifiedDamage() + manualCustomDamageModifier));
+            float wrathMulti = 1.0F;
+            ArrayList<String> cardNames = this.owner.hand.getCardNames();
+            System.out.println(cardNames);
+            if (cardNames.contains(EnEruption.ID)) {
+                System.out.println("Eruption " + cardNames.indexOf(this.cardID) + " : " + cardNames.indexOf(EnEruption.ID));
+                if (!(this instanceof EnEruption) && cardNames.indexOf(this.cardID) > cardNames.indexOf(EnEruption.ID)) {
+                    wrathMulti = 2.0F;
+                }
+            }
+            this.intentDmg = MathUtils.floor(wrathMulti * manualCustomDamageModifierMult * calculateDamage(mo, player, this.baseDamage + customIntentModifiedDamage() + manualCustomDamageModifier));
             if (this instanceof EnCarveReality) {
+                System.out.println("Is carve reality");
                 if (((EnCarveReality)this).willUseSmite) {
+                    System.out.println("will use smite");
                     EnSmite enSmite = new EnSmite();
                     enSmite.calculateCardDamage(this.owner);
                     this.intentDmg += enSmite.intentDmg;
@@ -328,6 +345,15 @@ public abstract class AbstractBossCard extends AbstractCard {
             if (this.baseDamage != (int) tmp) {
                 this.isDamageModified = true;
             }
+        }
+        if (this.owner != null && this.owner.stance != null) {
+//            if (this.owner.stance instanceof EnRealWrathStance) {
+//                tmp = tmp * 2F;
+//            }
+            // Already covered by the custom power
+//            if (this.owner.stance instanceof EnWrathStance) {
+//                tmp = tmp * 1.5F;
+//            }
         }
         for (final AbstractPower p : this.owner.powers) {
             tmp = p.atDamageGive(tmp, this.damageTypeForTurn, this);

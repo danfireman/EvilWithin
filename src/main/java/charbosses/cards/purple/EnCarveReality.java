@@ -3,6 +3,8 @@ package charbosses.cards.purple;
 import charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import charbosses.cards.AbstractBossCard;
 import charbosses.cards.colorless.EnShiv;
+import charbosses.powers.cardpowers.EnemyAccuracyPower;
+import charbosses.powers.cardpowers.EnemyMasterRealityPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,7 +34,8 @@ public class EnCarveReality extends AbstractBossCard {
     @Override
     public void use(final AbstractPlayer p, final AbstractMonster m) {
         this.addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        this.addToBot(new EnemyMakeTempCardInHandAction(new EnSmite(), 1));
+        EnSmite smite = new EnSmite();
+        this.addToBot(new EnemyMakeTempCardInHandAction(smite, 1));
     }
 
     @Override

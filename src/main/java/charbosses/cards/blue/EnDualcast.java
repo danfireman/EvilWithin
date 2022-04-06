@@ -20,7 +20,6 @@ public class EnDualcast extends AbstractBossCard {
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("Dualcast");
     }
-
     public EnDualcast() {
         super(ID, cardStrings.NAME, "blue/skill/dualcast", 1, cardStrings.DESCRIPTION, CardType.SKILL, CardColor.BLUE, CardRarity.BASIC, CardTarget.NONE, AbstractMonster.Intent.BUFF);
         this.showEvokeValue = true;

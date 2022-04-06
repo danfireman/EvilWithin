@@ -44,9 +44,9 @@ public class CBR_ArtOfWar extends AbstractCharbossRelic {
         this.flash();
         this.firstTurn = true;
         this.gainEnergyNext = true;
-
-
     }
+
+    public boolean willGainEnergy() { return gainEnergyNext; }
 
     public void onTrigger() {
         if (this.gainEnergyNext && !this.firstTurn) {

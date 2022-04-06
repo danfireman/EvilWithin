@@ -7,6 +7,7 @@ import charbosses.bosses.AbstractCharBoss;
 import charbosses.bosses.Defect.NewAge.ArchetypeAct2ClawNewAge;
 import charbosses.bosses.Ironclad.NewAge.ArchetypeAct1StatusesNewAge;
 import charbosses.bosses.Ironclad.NewAge.ArchetypeAct2MushroomsNewAge;
+import charbosses.bosses.Ironclad.NewAge.ArchetypeAct2SpotWeaknessNewAge;
 import charbosses.bosses.Ironclad.NewAge.ArchetypeAct3BlockNewAge;
 import charbosses.cards.AbstractBossCard;
 import charbosses.cards.red.EnBodySlam;

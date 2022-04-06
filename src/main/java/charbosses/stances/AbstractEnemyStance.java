@@ -89,6 +89,8 @@ public abstract class AbstractEnemyStance extends AbstractStance {
             return new EnCalmStance();
         } else if (name.equals("Wrath")) {
             return new EnWrathStance();
+        } else if (name.equals("Real Wrath")) {
+            return new EnRealWrathStance();
         } else if (name.equals("Divinity")) {
             return new EnDivinityStance();
         } else if (name.equals("Neutral")) {

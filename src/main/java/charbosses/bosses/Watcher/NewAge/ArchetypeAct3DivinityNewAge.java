@@ -57,8 +57,8 @@ public class ArchetypeAct3DivinityNewAge extends ArchetypeBaseDefect {
             switch (turn) {
                 case 0:
                     //Turn 2
-                    addToList(cardsList, new EnWishPlated());
-                    addToList(cardsList, new EnGoodInstincts());
+                    addToList(cardsList, new EnWishPlated()); // 3 plated armor
+                    addToList(cardsList, new EnGoodInstincts()); // 5 block
                     addToList(cardsList, new EnShame());
                     turn++;
                     break;
@@ -66,12 +66,12 @@ public class ArchetypeAct3DivinityNewAge extends ArchetypeBaseDefect {
                     //Turn 2
                     addToList(cardsList, new EnWaveOfTheHand());
                     addToList(cardsList, new EnBlind());
-                    addToList(cardsList, new EnSwivel());
+                    addToList(cardsList, new EnSwivel()); // 8 block
                     turn++;
                     break;
                 case 2:
                     //Turn 3
-                    AbstractBossCard c = new EnSignatureMove(); //Big attack
+                    AbstractBossCard c = new EnSignatureMove(); //Big attack - 30 damage
                     c.freeToPlayOnce = true;
                     c.energyGeneratedIfPlayed = 2;
                     addToList(cardsList, c, extraUpgrades);
@@ -80,14 +80,14 @@ public class ArchetypeAct3DivinityNewAge extends ArchetypeBaseDefect {
                     turn++;
                     break;
                 case 3:
-                    addToList(cardsList, new EnProtect(), true);
-                    addToList(cardsList, new EnEmptyFist(), true);    //Exit Divinity
+                    addToList(cardsList, new EnProtect(), true); // 16 block
+                    addToList(cardsList, new EnEmptyFist(), true);    //Exit Divinity - 9(14) damage
                     addToList(cardsList, new EnNormality());
                     turn++;
                     break;
                 case 4:
-                    addToList(cardsList, new EnExpunger());     //Big Attack
-                    addToList(cardsList, new EnStrikePurple());
+                    addToList(cardsList, new EnExpunger());     //Big Attack - 27 damage
+                    addToList(cardsList, new EnStrikePurple()); // 6 damage
                     addToList(cardsList, new EnDevotion());
                     turn = 0;
                     looped = true;
@@ -97,28 +97,28 @@ public class ArchetypeAct3DivinityNewAge extends ArchetypeBaseDefect {
             switch (turn) {
                 case 0:
                     addToList(cardsList, new EnWaveOfTheHand());
-                    AbstractBossCard c = new EnSwivel();
+                    AbstractBossCard c = new EnSwivel(); // 8 block
                     c.energyGeneratedIfPlayed = 1;
                     addToList(cardsList, c);
                     c = new EnEmptyFist();                      //Exit Divinity
                     c.freeToPlayOnce = true;
-                    addToList(cardsList, c, true);
+                    addToList(cardsList, c, true); // 9(14) damage
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new EnExpunger());     //Big Attack
+                    addToList(cardsList, new EnExpunger());     //Big Attack - 27 damage
                     addToList(cardsList, new EnSanctity());    //Exit Divinity
                     addToList(cardsList, new EnShame());
                     turn++;
                     break;
                 case 2:
-                    addToList(cardsList, new EnProtect(), true);
-                    addToList(cardsList, new EnStrikePurple());
+                    addToList(cardsList, new EnProtect(), true); // 16 block
+                    addToList(cardsList, new EnStrikePurple()); // 6 damage
                     addToList(cardsList, new EnBlind());
                     turn++;
                     break;
                 case 3:
-                    addToList(cardsList, new EnSignatureMove(), extraUpgrades); //Big Attack
+                    addToList(cardsList, new EnSignatureMove(), extraUpgrades); //Big Attack - 30-40 damage
                     addToList(cardsList, new EnGoodInstincts());
                     addToList(cardsList, new EnNormality());
                     turn = 0;
