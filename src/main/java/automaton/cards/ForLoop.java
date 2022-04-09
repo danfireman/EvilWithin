@@ -1,5 +1,6 @@
 package automaton.cards;
 
+import automaton.AutomatonMod;
 import automaton.actions.EasyXCostAction;
 import automaton.powers.CloningPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,18 +16,20 @@ public class ForLoop extends AbstractBronzeCard {
         super(ID, -1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         //   this.tags.add(SneckoMod.BANNEDFORSNECKO);
         exhaust = true;
+        baseMagicNumber = magicNumber = 0;
+        AutomatonMod.loadJokeCardImage(this, AutomatonMod.makeBetaCardPath("ForLoop.png"));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new EasyXCostAction(this, (effect, params) -> {
-            if (effect > 0)
-                applyToSelfTop(new CloningPower(effect));
+            if (effect + params[0] > 0)
+                applyToSelfTop(new CloningPower(effect + params[0]));
             return true;
-        }));
+        }, magicNumber));
     }
 
     public void upp() {
-        selfRetain = true;
+        upgradeMagicNumber(1);
         rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
     }

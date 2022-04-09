@@ -45,9 +45,12 @@ public class StanceHelper {
     }
 
     public static void update() {
+        /*
         hitboxStance.update();
         hitboxTechnique.update();
         hitboxFinisher.update();
+
+         */
     }
 
     public static String getStanceName() {
@@ -94,6 +97,7 @@ public class StanceHelper {
     }
 
     public static void render(SpriteBatch sb) {
+        /*
         if (!downfallMod.champDisableStanceHelper) {
             if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
                 if (hitboxStance != null) {
@@ -170,11 +174,13 @@ public class StanceHelper {
                         }
 
                         // Icons in front of the thing are here.
-                        renderHelper(sb, SymbolDescriptionPatch.ICONCROWN, Settings.scale * 250F, Settings.scale * 810F);
+                        //renderHelper(sb, SymbolDescriptionPatch.ICONCROWN, Settings.scale * 250F, Settings.scale * 810F);
                         renderHelper(sb, SymbolDescriptionPatch.ICONFIST, Settings.scale * 250F, Settings.scale * 710F);
                     }
                 }
         }
+
+         */
     }
 
     private static void renderHelper(SpriteBatch sb, TextureAtlas.AtlasRegion img, float drawX, float drawY) {

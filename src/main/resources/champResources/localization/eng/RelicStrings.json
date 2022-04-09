@@ -3,7 +3,7 @@
     "NAME": "Champion's Crown",
     "FLAVOR": "A WINNER IS YOU!",
     "DESCRIPTIONS": [
-      "Whenever you enter a #yStance, deal #b4 damage to a random enemy."
+      "At the start of combat, enter #bDefensive or #rBerserker Stance."
     ]
   },
   "champ:BlackKnightHelmet": {
@@ -45,7 +45,7 @@
     "NAME": "Deflecting Bracers",
     "FLAVOR": "If you thought blocking was good then...",
     "DESCRIPTIONS": [
-      "At the start of your turn, gain #ychamp:Counter equal to the amount of #yBlock lost."
+      "At the start of your turn, gain #ychamp:Counter equal to half the amount of expired #yBlock."
     ]
   },
   "champ:DuelingGlove": {
@@ -66,14 +66,14 @@
     "NAME": "Gladiators Manual",
     "FLAVOR": "Try everything - something will stick.",
     "DESCRIPTIONS": [
-      "Whenever you play a #yTechnique, a #yCombo, a #yFinisher, and enter a #yStance in the same turn, gain #b1 #yStrength and #yDexterity."
+      "Whenever you play a #yCombo, a #yFinisher, and enter a #yStance in the same turn, gain #b1 #yStrength and #yDexterity."
     ]
   },
   "champ:PowerArmor": {
     "NAME": "Power Armor",
     "FLAVOR": "Bought used.",
     "DESCRIPTIONS": [
-      "Gain [E] at the start of your turn. NL Your maximum #yVigor and #ychamp:Counter is #b20."
+      "Gain [E] at the start of your turn. NL Your maximum #yVigor and #ychamp:Counter is #b10."
     ]
   },
   "champ:SignatureFinisher": {
@@ -89,7 +89,7 @@
     "NAME": "Spectre's Hand",
     "FLAVOR": "Some victories stay with you.",
     "DESCRIPTIONS": [
-      "Whenever you Enter a Stance, add a #yStrike or #yDefend to your hand. It costs #b0 and has #yExhaust."
+      "Whenever you Enter a Stance, gain a basic #yStrike or #yDefend. It costs #b0 and has #yExhaust."
     ]
   },
   "champ:LiftRelic": {

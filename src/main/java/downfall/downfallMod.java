@@ -190,7 +190,7 @@ public class downfallMod implements
     public static boolean crossoverCharacters = true;
     public static boolean unlockEverything = false;
     public static boolean noMusic = false;
-    public static boolean normalMapLayout = false;
+    public static boolean normalMapLayout = true;
     public static boolean champDisableStanceHelper = false;
 
     public static ArrayList<AbstractRelic> shareableRelics = new ArrayList<>();
@@ -231,7 +231,8 @@ public class downfallMod implements
             Settings.GameLanguage.ENG,
             Settings.GameLanguage.ZHS,
             // Settings.GameLanguage.JPN
-            Settings.GameLanguage.KOR
+            Settings.GameLanguage.KOR,
+            Settings.GameLanguage.FRA
     };
 
     public static String[] SupportedLanguagesStrings = {
@@ -1331,7 +1332,6 @@ public class downfallMod implements
         BaseMod.addRelic(new NeowBlessing(), RelicType.SHARED);
         BaseMod.addRelic(new ExtraCursedBell(), RelicType.SHARED);
         BaseMod.addRelic(new ExtraCursedKey(), RelicType.SHARED);
-        BaseMod.addRelic(new Hecktoplasm(), RelicType.SHARED);
     }
 
     public static boolean readyToDoThing = false;

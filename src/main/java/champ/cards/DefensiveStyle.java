@@ -19,14 +19,14 @@ public class DefensiveStyle extends AbstractChampCard {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         this.tags.add(ChampMod.OPENER);
         this.tags.add(ChampMod.OPENERDEFENSIVE);
-        baseMagicNumber = magicNumber = 2;
-        myHpLossCost = 5;
+        baseMagicNumber = magicNumber = 1;
+        //myHpLossCost = 5;
         postInit();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         defenseOpen();
-        fatigue(5);
+      //  fatigue(5);
         applyToSelf(new DefensiveStylePower(magicNumber));
     }
 

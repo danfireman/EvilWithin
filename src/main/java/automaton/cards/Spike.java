@@ -11,9 +11,9 @@ public class Spike extends AbstractBronzeCard {
     public final static String ID = makeID("Spike");
 
     public Spike() {
-        super(ID, 1, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
-        baseDamage = 3;
-        magicNumber = baseMagicNumber = 3;
+        super(ID, 0, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
+        baseDamage = 4;
+        magicNumber = baseMagicNumber = 4;
         thisEncodes();
     }
 
@@ -32,7 +32,7 @@ public class Spike extends AbstractBronzeCard {
 
     @Override
     public void upp() {
-        upgradeDamage(1);
-        upgradeMagicNumber(1);
+        upgradeDamage(2);
+        upgradeMagicNumber(2);
     }
 }

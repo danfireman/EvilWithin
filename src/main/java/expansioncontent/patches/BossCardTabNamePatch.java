@@ -1,3 +1,4 @@
+
 package expansioncontent.patches;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -40,5 +41,7 @@ public class BossCardTabNamePatch {
     }
 
 }
+
+
 
 

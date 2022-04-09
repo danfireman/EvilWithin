@@ -10,10 +10,8 @@ public class SwordSigil extends AbstractChampCard {
 
     public SwordSigil() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        tags.add(ChampMod.TECHNIQUE);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 4;
         this.exhaust = true;
-        postInit();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -24,5 +22,6 @@ public class SwordSigil extends AbstractChampCard {
 
     public void upp() {
         upgradeMagicNumber(2);
+       // upgradeCool(2);
     }
 }

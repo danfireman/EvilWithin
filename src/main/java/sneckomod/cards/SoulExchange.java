@@ -23,11 +23,11 @@ public class SoulExchange extends AbstractSneckoCard {
     public SoulExchange() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         tags.add(SneckoMod.SNEKPROOF);
+        baseMagicNumber = magicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new DrawCardAction(1));
-        if (upgraded) atb(new DrawCardAction(1));
+        atb(new DrawCardAction(magicNumber));
         atb(new SelectCardsInHandAction(1, EXTENDED_DESCRIPTION[0], (cards) -> {
             AbstractCard q = cards.get(0);
             CardColor c = q.color;
@@ -49,6 +49,7 @@ public class SoulExchange extends AbstractSneckoCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            upgradeMagicNumber(1);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

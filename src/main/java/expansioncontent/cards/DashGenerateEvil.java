@@ -45,7 +45,7 @@ public class DashGenerateEvil extends AbstractExpansionCard {
     private ArrayList<AbstractCard> dupeListForPrev = new ArrayList<>();
 
     public DashGenerateEvil() {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         this.setBackgroundTexture("expansioncontentResources/images/512/bg_boss_attack.png", "expansioncontentResources/images/1024/bg_boss_attack.png");
         baseBlock = BLOCK;
         baseDamage = DAMAGE;
@@ -57,7 +57,7 @@ public class DashGenerateEvil extends AbstractExpansionCard {
 
         this.addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY), 0.5F));
 
-        atb(new GainBlockAction(p, p, this.block));
+      //  atb(new GainBlockAction(p, p, this.block));
         atb(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         atb(new RandomCardWithTagAction(upgraded, expansionContentMod.STUDY, true));

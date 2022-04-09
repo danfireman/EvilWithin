@@ -1,12 +1,16 @@
 package gremlin.potions;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomPotion;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import gremlin.powers.WizPower;
 
 public class WizPotion extends CustomPotion {
@@ -26,11 +30,17 @@ public class WizPotion extends CustomPotion {
         description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip(
+
+                com.megacrit.cardcrawl.helpers.TipHelper.capitalize(GameDictionary.VIGOR.NAMES[0]),
+                GameDictionary.keywords.get(GameDictionary.VIGOR.NAMES[0])));
     }
+
+
 
     public void use(AbstractCreature target) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                new WizPower(AbstractDungeon.player, this.potency), this.potency));
+                new VigorPower(AbstractDungeon.player, this.potency), this.potency));
     }
 
     public CustomPotion makeCopy() {
@@ -38,7 +48,7 @@ public class WizPotion extends CustomPotion {
     }
 
     public int getPotency(int ascensionLevel) {
-        return 3;
+        return 10;
     }
 }
 

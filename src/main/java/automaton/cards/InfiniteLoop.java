@@ -47,6 +47,6 @@ public class InfiniteLoop extends AbstractBronzeCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeMagicNumber(2);
     }
 }

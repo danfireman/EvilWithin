@@ -27,12 +27,12 @@
   "bronze:InfiniteBeams": {
     "NAME": "Infinite Beams",
     "DESCRIPTIONS": [
-      "At the start of your turn, add #b1 #yMinor #yBeam into your hand.",
-      "At the start of your turn, add #b1 #yMinor #yBeam+ into your hand.",
-      "At the start of your turn, add #b",
-      " #yMinor #yBeams into your hand.",
-      "At the start of your turn, add #b",
-      " #yMinor #yBeam+s into your hand."
+      "At the start of your turn, Gain #b1 #yMinor #yBeam.",
+      "At the start of your turn, Gain #b1 #yMinor #yBeam+.",
+      "At the start of your turn, gain #b",
+      " #yMinor #yBeams.",
+      "At the start of your turn, gain #b",
+      " #yMinor #yBeam+s."
     ]
   },
   "bronze:Optimize": {
@@ -63,15 +63,15 @@
   "bronze:Library": {
     "NAME": "Library",
     "DESCRIPTIONS": [
-      "At the start of your turn, add a random card with #yEncode to your hand. NL It costs #b0.",
-      "At the start of your turn, add #b",
-      " random cards with #yEncode to your hand. NL They cost #b0."
+      "At the start of your turn, gain a random card with #yEncode. It costs #b0.",
+      "At the start of your turn, gain #b",
+      " random cards with #yEncode. They cost #b0."
     ]
   },
   "bronze:LibraryMod": {
     "NAME": "External Library",
     "DESCRIPTIONS": [
-      "At the start of your turn, add a random card with #yEncode to your hand and give it Ethereal."
+      "At the start of your turn, gain a random card with #yEncode and give it Ethereal."
     ]
   },
   "bronze:BronzeHeatsink": {
@@ -101,9 +101,9 @@
   "bronze:Verify": {
     "NAME": "Sentient Form",
     "DESCRIPTIONS": [
-      "The first time you draw or create a Function each turn, increase all numbers on it by #b1.",
-      "The first #b",
-      " times you draw or create a Function each turn, increase all numbers on it by #b1."
+      "Whenever you draw a Function, increase all numbers on it by #b1.",
+      "Whenever you draw a Function, increase all numbers on it by #b",
+      " except for cost."
     ]
   },
   "bronze:FreeFunction": {
@@ -117,8 +117,8 @@
   "bronze:CleanCode": {
     "NAME": "Clean Code",
     "DESCRIPTIONS": [
-      "Remove all #yCompile Error effects from cards in the Sequence. Lasts for #b1 more Function.",
-      "Remove all #yCompile Error effects from cards in the Sequence. Lasts for #b",
+      "Remove all #yCompile Error effects from Encoded cards. Lasts for #b1 more Function.",
+      "Remove all #yCompile Error effects from Encoded cards. Lasts for #b",
       " Functions."
     ]
   },

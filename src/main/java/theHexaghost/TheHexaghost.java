@@ -190,7 +190,7 @@ public class TheHexaghost extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                70, 70, 0, 99, 5, this, getStartingRelics(),
+                66, 66, 0, 99, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
@@ -205,7 +205,7 @@ public class TheHexaghost extends CustomPlayer {
         }
         retVal.add(Sear.ID);
         retVal.add(Float.ID);
-        retVal.add(FastForward.ID);
+        retVal.add(SkipABeat.ID);
         return retVal;
     }
 

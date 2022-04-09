@@ -17,23 +17,13 @@ public class Invalidate extends AbstractBronzeCard {
     private static final int UPG_MAGIC = 1;
 
     public Invalidate() {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.ALL);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
         baseMagicNumber = magicNumber = MAGIC;
         thisEncodes();
-        tags.add(AutomatonMod.BAD_COMPILE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractMonster q : monsterList()) {
-            applyToEnemy(q, autoVuln(q, magicNumber));
-        }
-    }
-
-    @Override
-    public void onCompile(AbstractCard function, boolean forGameplay) {
-        if (forGameplay){
-            applyToSelf(new VulnerablePower(AbstractDungeon.player,1, false));
-        }
+        applyToEnemy(m, autoVuln(m, magicNumber));
     }
 
     public void upp() {

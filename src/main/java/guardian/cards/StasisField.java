@@ -10,9 +10,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import guardian.GuardianMod;
 import guardian.actions.PlaceActualCardIntoStasis;
+import guardian.orbs.StasisOrb;
 import guardian.patches.AbstractCardEnum;
 
-public class StasisField extends AbstractGuardianCard {
+public class StasisField extends AbstractGuardianCard implements InStasisCard {
     public static final String ID = GuardianMod.makeID("StasisField");
     public static final String NAME;
     public static final String DESCRIPTION;
@@ -41,12 +42,15 @@ public class StasisField extends AbstractGuardianCard {
 
     public boolean justUsed = false;
 
+    /*
     @Override
     public void whenReturnedFromStasis() {
         upgradeBlock(magicNumber);
         freeToPlayOnce = false;
         cost = costForTurn = 1;
     }
+    
+     */
 
     public StasisField() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
@@ -55,7 +59,7 @@ public class StasisField extends AbstractGuardianCard {
         this.baseBlock = BLOCK;
 
         this.socketCount = SOCKETS;
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 4;
         this.tags.add(GuardianMod.SELFSTASIS);
         updateDescription();
         loadGemMisc();
@@ -70,6 +74,12 @@ public class StasisField extends AbstractGuardianCard {
 
     }
 
+    @Override
+    public void onEvoke(StasisOrb orb) {
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
+    }
+
+
     public AbstractCard makeCopy() {
         return new StasisField();
     }
@@ -77,7 +87,7 @@ public class StasisField extends AbstractGuardianCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBlock(2);
+            upgradeBlock(3);
             upgradeMagicNumber(1);
         }
     }
@@ -92,6 +102,11 @@ public class StasisField extends AbstractGuardianCard {
             }
         }
         this.initializeDescription();
+    }
+
+    @Override
+    public void onStartOfTurn(StasisOrb orb) {
+
     }
 }
 

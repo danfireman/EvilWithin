@@ -4,6 +4,7 @@ import champ.ChampChar;
 import champ.ChampMod;
 import champ.powers.CounterPower;
 import champ.powers.DefensiveStylePower;
+import champ.powers.DoubleStyleThisTurnPower;
 import champ.relics.DefensiveTrainingManual;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -27,6 +28,24 @@ public class DefensiveStance extends AbstractChampStance {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return ChampChar.characterStrings.TEXT[8] + ": " +
+                ChampChar.characterStrings.TEXT[12] + //Gain #B
+                DefensiveStance.amount() +
+                ChampChar.characterStrings.TEXT[47] + //#y Vigor
+                ChampChar.characterStrings.TEXT[63] +
+                " NL " +
+                ChampChar.characterStrings.TEXT[62] + //"Charges Remaining:
+                getRemainingChargeCount() +
+                ChampChar.characterStrings.TEXT[55]; //"."
+    }
+
+    @Override
     public String getKeywordString() {
         return "champ:defensive";
     }
@@ -39,13 +58,22 @@ public class DefensiveStance extends AbstractChampStance {
 
     @Override
     public void updateDescription() {
-        this.description = ChampChar.characterStrings.TEXT[8] + ": " + ChampChar.characterStrings.TEXT[12] + DefensiveStance.amount() + ChampChar.characterStrings.TEXT[47] + " NL " + ChampChar.characterStrings.TEXT[9] + ": " + ChampChar.characterStrings.TEXT[12] + finisherAmount() + ChampChar.characterStrings.TEXT[56];
+        this.description = ChampChar.characterStrings.TEXT[8] + ": " +
+                ChampChar.characterStrings.TEXT[12] +
+                DefensiveStance.amount() +
+                ChampChar.characterStrings.TEXT[47] + " NL " +
+                ChampChar.characterStrings.TEXT[9] + ": " +
+                ChampChar.characterStrings.TEXT[12] + finisherAmount() +
+                ChampChar.characterStrings.TEXT[56];
     }
 
     public static int amount() {
-        int x = 4;
+        int x = 3;
         if (AbstractDungeon.player.hasPower(DefensiveStylePower.POWER_ID)) {
             x += AbstractDungeon.player.getPower(DefensiveStylePower.POWER_ID).amount;
+        }
+        if (AbstractDungeon.player.hasPower(DoubleStyleThisTurnPower.POWER_ID)) {
+            x += AbstractDungeon.player.getPower(DoubleStyleThisTurnPower.POWER_ID).amount;
         }
         return x;
     }
@@ -60,10 +88,7 @@ public class DefensiveStance extends AbstractChampStance {
 
     @Override
     public void technique() {
-        int x = 4;
-        if (AbstractDungeon.player.hasPower(DefensiveStylePower.POWER_ID)) {
-            x += AbstractDungeon.player.getPower(DefensiveStylePower.POWER_ID).amount;
-        }
+        int x = amount();
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new CounterPower(x), x));
     }
 

@@ -9,8 +9,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
+import com.sun.org.apache.xpath.internal.objects.XBoolean;
 
 public class Duel extends AbstractChampCard {
 
@@ -18,10 +20,10 @@ public class Duel extends AbstractChampCard {
 
     //stupid intellij stuff attack, enemy, uncommon
 
-    private static final int DAMAGE = 7;
+    private static final int DAMAGE = 8;
     private static final int UPG_DAMAGE = 3;
 
-    private static final int BLOCK = 7;
+    private static final int BLOCK = 8;
     private static final int UPG_BLOCK = 3;
 
     public Duel() {
@@ -39,17 +41,13 @@ public class Duel extends AbstractChampCard {
             atb(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F));
         }
         dmg(m, AbstractGameAction.AttackEffect.NONE);
-        if (monsterList().size() == 1 && !this.purgeOnUse) {
-            AbstractCard r = this;
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    isDone = true;
-                    GameActionManager.queueExtraCard(r, m);
-                }
-            });
+        if (m.hasPower(StrengthPower.POWER_ID) && m.getPower(StrengthPower.POWER_ID).amount > 0 && !this.purgeOnUse) {
+            blck();
+            if (m != null) {
+                atb(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY), 0.1F));
+            }
+            dmg(m, AbstractGameAction.AttackEffect.NONE);
         }
-        techique();
     }
 
     public static boolean isInCombat() {
@@ -58,8 +56,16 @@ public class Duel extends AbstractChampCard {
 
     @Override
     public void triggerOnGlowCheck() {
+        boolean hasStr = false;
         if (isInCombat()) {
-            glowColor = (monsterList().size() == 1) ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
+            for (AbstractMonster m:monsterList()){
+                if (m.hasPower(StrengthPower.POWER_ID)){
+                    hasStr=true;
+                    break;
+                }
+            }
+
+            glowColor = (hasStr) ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
         }
     }
 

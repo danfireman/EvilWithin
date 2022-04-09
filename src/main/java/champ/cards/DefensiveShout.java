@@ -32,14 +32,15 @@ public class DefensiveShout extends AbstractChampCard {
         applyToSelf(new CounterPower(magicNumber));
 
       //  AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
-        if (upgraded) techique();
+        //if (upgraded) techique();
     }
 
 
 
     public void upp() {
-        tags.add(ChampMod.TECHNIQUE);
-        postInit();
-        initializeDescription();
+     //   tags.add(ChampMod.TECHNIQUE);
+    //    postInit();
+     //   initializeDescription();
+        upgradeMagicNumber(4);
     }
 }

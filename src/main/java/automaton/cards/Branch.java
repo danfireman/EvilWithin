@@ -1,5 +1,6 @@
 package automaton.cards;
 
+import automaton.AutomatonMod;
 import automaton.actions.AddToFuncAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -21,14 +22,15 @@ public class Branch extends AbstractBronzeCard implements OctopusCard {
 
     //stupid intellij stuff attack, self_and_enemy, common
 
-    private static final int DAMAGE = 9;
-    private static final int BLOCK = 8;
+    private static final int DAMAGE = 7;
+    private static final int BLOCK = 6;
 
     public Branch() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = DAMAGE;
         baseBlock = BLOCK;
         exhaust = true;
+        AutomatonMod.loadJokeCardImage(this, AutomatonMod.makeBetaCardPath("Branch.png"));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

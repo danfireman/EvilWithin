@@ -28,7 +28,7 @@
       " - Increase #yCultist #yStrike's damage by #b",
       " permanently.",
       "ERR: SEQUENCE_EMPTY",
-      " - Add a copy of #yInfinite #yLoop to your hand with #b",
+      " - Gain a copy of #yInfinite #yLoop with #b",
       " more damage.",
       " to Mutate.",
       " to Encode.",
@@ -40,7 +40,10 @@
       " NL bronze:Compile",
       "bronze:Compile",
       " NL bronze:Encode.",
-      "bronze:Encode. NL "
+      "bronze:Encode. NL ",
+      " π NL When bronze:Encoded,",
+      "LOCALIZATION NOTE: The text above must be equal to the start of Replicate's extra description line.",
+      "ERR - NO_DUPE_FULL_RELEASES"
     ]
   },
   "bronze:CompileDisplayPanel": {

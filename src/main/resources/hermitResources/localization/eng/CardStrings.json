@@ -49,8 +49,9 @@
   },
   "hermit:CalledShot": {
     "NAME": "Called Shot",
-    "DESCRIPTION": "Deal damage equal to your hand size. NL hermit:Dead_On: NL Draw !M! cards.",
-    "UPGRADE_DESCRIPTION": " NL (Deals !D! damage.)"
+    "DESCRIPTION": "Deal damage equal to your hand size. NL hermit:Dead_On: NL Draw !M! card.",
+    "UPGRADE_DESCRIPTION": " NL (Deals !D! damage.)",
+    "EXTENDED_DESCRIPTION": ["Deal damage equal to your hand size. NL hermit:Dead_On: NL Draw !M! cards."]
   },
   "hermit:Dissolve": {
     "NAME": "Dissolve",
@@ -250,7 +251,7 @@
   },
   "hermit:Reprieve": {
     "NAME": "Reprieve",
-    "DESCRIPTION": "Exhaust ALL *Curses. NL If you exhaust at least 13 *Curses, take an extra turn after this one.",
+    "DESCRIPTION": "Exhaust ALL *Curses. NL If you exhaust at least !M! *Curses, take an extra turn after this one.",
     "EXTENDED_DESCRIPTION": [
       "There are no Curses."
     ]

@@ -15,7 +15,7 @@ public class Circumvent extends AbstractChampCard {
 
     //stupid intellij stuff skill, self, common
 
-    private static final int BLOCK = 7;
+    private static final int BLOCK = 6;
 
 
     public Circumvent() {
@@ -31,14 +31,14 @@ public class Circumvent extends AbstractChampCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         //  techique();
         blck();
-        if (dcombo()) {
+        if (dcombo() || bcombo()) {
             atb(new DrawCardAction(magicNumber));
         }
     }
 
     @Override
     public void triggerOnGlowCheck() {
-        glowColor = dcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
+        glowColor = dcombo()||bcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
     }
 
     public void upp() {

@@ -4,6 +4,7 @@ import champ.ChampChar;
 import champ.ChampMod;
 import champ.powers.BerserkerStylePower;
 
+import champ.powers.DoubleStyleThisTurnPower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -33,6 +34,24 @@ public class BerserkerStance extends AbstractChampStance {
     }// 24
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return ChampChar.characterStrings.TEXT[8] + ": " +
+                ChampChar.characterStrings.TEXT[12] + //Gain #B
+                BerserkerStance.amount() +
+                ChampChar.characterStrings.TEXT[46] + //#y Vigor
+                ChampChar.characterStrings.TEXT[63] +
+                " NL " +
+                ChampChar.characterStrings.TEXT[62] + //"Charges Remaining:
+                getRemainingChargeCount() +
+                ChampChar.characterStrings.TEXT[55]; //"."
+    }
+
+    @Override
     public String getKeywordString() {
         return "champ:berserker";
     }
@@ -43,6 +62,7 @@ public class BerserkerStance extends AbstractChampStance {
                 + ChampChar.characterStrings.TEXT[12] + //Gain #B
                 BerserkerStance.amount() +
                 ChampChar.characterStrings.TEXT[46] + //#y Vigor.
+                ChampChar.characterStrings.TEXT[63] +
                 " NL " + ChampChar.characterStrings.TEXT[9] + ": " + //Finisher Bonus:
                 ChampChar.characterStrings.TEXT[11];   //Gain 1 Strength.
     }
@@ -54,9 +74,12 @@ public class BerserkerStance extends AbstractChampStance {
     }
 
     public static int amount() {
-        int x = 3;
+        int x = 2;
         if (AbstractDungeon.player.hasPower(BerserkerStylePower.POWER_ID)) {
             x += AbstractDungeon.player.getPower(BerserkerStylePower.POWER_ID).amount;
+        }
+        if (AbstractDungeon.player.hasPower(DoubleStyleThisTurnPower.POWER_ID)) {
+            x += AbstractDungeon.player.getPower(DoubleStyleThisTurnPower.POWER_ID).amount;
         }
         return x;
     }

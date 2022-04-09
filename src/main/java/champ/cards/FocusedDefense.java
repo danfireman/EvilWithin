@@ -18,8 +18,8 @@ public class FocusedDefense extends AbstractChampCard {
     public FocusedDefense() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
-        baseBlock = 5;
-        baseMagicNumber = magicNumber = 5;
+        baseBlock = 4;
+        baseMagicNumber = magicNumber = 4;
 
         tags.add(ChampMod.OPENER);
         tags.add(ChampMod.OPENERBERSERKER);
@@ -29,7 +29,7 @@ public class FocusedDefense extends AbstractChampCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         berserkOpen();
         blck();
-        applyToSelf(new VigorPower(p, magicNumber));
+        ChampMod.vigor(magicNumber);
     }
 
     public void upp() {
