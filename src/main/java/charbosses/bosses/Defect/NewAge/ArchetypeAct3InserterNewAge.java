@@ -140,33 +140,43 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
         } else {
             switch (turn) {
                 case 0:
-                    // first round: Plasma Plasma Plasma Plasma Lightning 10E
+                    // first round: Plasma Plasma Plasma Plasma Lightning 6E
+                    // second round (turn 10): Frost Plasma Lightning Plasma Plasma Plasma Lightning 16E
+                    // second round (turn 14): Plasma Lightning Frost Plasma Lightning Plasma Plasma Plasma Lightning 17E
                     addToList(cardsList, new EnRebound());
                     addToList(cardsList, new EnBarrage(this.cB.filledOrbCount()), extraUpgrades);
                     addToList(cardsList, new EnDefendBlue());
                     turn++;
                     break;
                 case 1:
-                    // first round: Plasma Plasma Plasma Plasma Lightning 7E
+                    // first round: Plasma Plasma Plasma Plasma Lightning 9E
+                    // second round (turn 11): Frost Plasma Lightning Plasma Plasma Plasma Lightning 19E
                     addToList(cardsList, new EnColdSnap());
-                    // first round: Plasma Plasma Plasma Plasma Plasma Frost 6E
+                    // first round: Plasma Plasma Plasma Plasma Lightning Frost 8E
                     addToList(cardsList, new EnBarrage(Math.min(this.cB.maxOrbs, this.cB.filledOrbCount() + 1)), extraUpgrades);
                     addToList(cardsList, new EnReinforcedBody(this.cB.energyPanel.getCurrentEnergy() - 2)); // TODO: Dynamic calculation
-                    // first round: Plasma Plasma Plasma Plasma Frost Plasma 8E
+                    // first round: Plasma Plasma Plasma Plasma Lightning Frost 0E
                     turn++;
                     break;
                 case 2:
+                    // first round: Plasma Plasma Plasma Plasma Lightning Frost 6E
+                    // second round (turn 12): Frost Plasma Lightning Plasma Plasma Plasma Lightning Frost 6E
                     addToList(cardsList, new EnDualcast());
                     cB.orbsAsEn().get(0).evokeOverride = true;
                     cB.orbsAsEn().get(0).evokeMult = 2;
                     addToList(cardsList, new EnFusion(), true);
                     addToList(cardsList, new EnZap());
+                    // first round: Plasma Plasma Plasma Lightning Frost Plasma Lightning 7E
                     turn++;
                     break;
                 case 3:
+                    // first round: Plasma Plasma Plasma Lightning Frost Plasma Lightning 13E
+                    // second round (turn 13): Plasma Lightning Plasma Plasma Plasma Lightning Frost Plasma Lightning 10E
                     addToList(cardsList, new EnMeteorStrike());
+                    // first round: Lightning Frost Plasma Lightning Plasma Plasma Plasma 14E
                     addToList(cardsList, new EnThunderStrike(EnThunderStrike.getLightningCount()), false); // TODO: Make auto-update
                     addToList(cardsList, new EnBallLightning());
+                    // first round: Frost Plasma Lightning Plasma Plasma Plasma Lightning 10E
                     turn = 0;
                     looped = true;
                     loops++;

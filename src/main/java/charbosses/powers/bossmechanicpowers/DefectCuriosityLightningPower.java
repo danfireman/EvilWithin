@@ -31,7 +31,7 @@ public class DefectCuriosityLightningPower extends AbstractBossMechanicPower {
     public void updateDescription() {
         this.description = (DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]);
     }
-
+    // TODO: display right damage when channeled on defrag round
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == CardType.POWER && !(card instanceof AbstractBossCard)) {
             flash();
