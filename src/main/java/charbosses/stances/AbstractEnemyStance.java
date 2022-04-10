@@ -20,7 +20,6 @@ public abstract class AbstractEnemyStance extends AbstractStance {
     private static final Logger logger = LogManager.getLogger(com.megacrit.cardcrawl.stances.AbstractStance.class.getName());
     public String name;
     public String description;
-    public String ID;
     protected ArrayList<PowerTip> tips = new ArrayList();
     protected Color c;
     protected static final int W = 512;

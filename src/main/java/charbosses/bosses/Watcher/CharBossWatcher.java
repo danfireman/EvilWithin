@@ -103,7 +103,7 @@ public class CharBossWatcher extends AbstractCharBoss {
                     archetype = new ArchetypeAct1RetainNewAge();
                     break;
                 case 2:
-                    archetype = new ArchetypeAct2CalmNewAge();
+                    archetype = new ArchetypeAct2StancesNewAge();
                     break;
                 case 3:
                     archetype = new ArchetypeAct3DivinityNewAge();
@@ -114,7 +114,7 @@ public class CharBossWatcher extends AbstractCharBoss {
                             archetype = new ArchetypeAct1RetainNewAge();
                             break;
                         case 1:
-                            archetype = new ArchetypeAct2CalmNewAge();
+                            archetype = new ArchetypeAct2StancesNewAge();
                             break;
                         case 2:
                             archetype = new ArchetypeAct3DivinityNewAge();
