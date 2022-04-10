@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.DevotionEffect;
 import java.util.ArrayList;
 
 public class EnMasterReality extends AbstractBossCard {
-    public static final String ID = "downfall_Charboss:Devotion";
+    public static final String ID = "downfall_Charboss:MasterReality";
     private static final CardStrings cardStrings;
 
     public EnMasterReality() {

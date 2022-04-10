@@ -41,7 +41,7 @@ public class EnemyCardGroup extends CardGroup {
     public void moveToDiscardPile(final AbstractCard c) {
         this.resetCardBeforeMoving(c);
         //c.darken(false);
-        System.out.printf(c.name + " DARKEN-CANCELED");
+//        System.out.printf(c.name + " DARKEN-CANCELED");
         //this.owner.discardPile.addToTop(c);
         this.owner.onCardDrawOrDiscard();
     }

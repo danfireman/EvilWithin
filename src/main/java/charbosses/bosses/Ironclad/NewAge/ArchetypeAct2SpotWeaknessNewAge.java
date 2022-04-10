@@ -6,7 +6,6 @@ import charbosses.cards.colorless.EnSwiftStrike;
 import charbosses.cards.curses.EnClumsy;
 import charbosses.cards.curses.EnHaunted;
 import charbosses.cards.red.*;
-import charbosses.powers.bossmechanicpowers.IroncladMushroomPower;
 import charbosses.powers.cardpowers.EnemySpotWeaknessPower;
 import charbosses.relics.*;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -27,13 +26,13 @@ public class ArchetypeAct2SpotWeaknessNewAge extends ArchetypeBaseIronclad {
         actNum = 2;
     }
 
-    AbstractCreature p;
+    AbstractCreature boss;
     boolean firstTime = true;
 
     @Override
     public void addedPreBattle() {
         super.addedPreBattle();
-        p = AbstractCharBoss.boss;
+        boss = AbstractCharBoss.boss;
     }
 
 
@@ -77,7 +76,7 @@ public class ArchetypeAct2SpotWeaknessNewAge extends ArchetypeBaseIronclad {
                     addToList(cardsList, new EnSpotWeakness());
                     addToList(cardsList, new EnRampage());
                     addToList(cardsList, new EnFlameBarrier()); // Not used
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnemySpotWeaknessPower(p, 3)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(boss, boss, new EnemySpotWeaknessPower(boss, 3)));
                     turn++;
                     break;
                 case 2:
@@ -96,7 +95,7 @@ public class ArchetypeAct2SpotWeaknessNewAge extends ArchetypeBaseIronclad {
                     addToList(cardsList, new EnSpotWeakness());
                     addToList(cardsList, new EnInflame(), true);
                     addToList(cardsList, new EnSwordBoomerang()); // Not used
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnemySpotWeaknessPower(p, 3)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(boss, boss, new EnemySpotWeaknessPower(boss, 3)));
                     theArtOfWar.beginPulse();
                     turn=0;
                     looped=true;
@@ -109,7 +108,7 @@ public class ArchetypeAct2SpotWeaknessNewAge extends ArchetypeBaseIronclad {
                         addToList(cardsList, new EnSpotWeakness());
                         addToList(cardsList, new EnHeavyBlade());
                         addToList(cardsList, new EnSwiftStrike(), extraUpgrades);
-                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnemySpotWeaknessPower(p, 3)));
+                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(boss, boss, new EnemySpotWeaknessPower(boss, 3)));
                     }
                     else {
                         addToList(cardsList, new EnHeavyBlade());
@@ -123,7 +122,7 @@ public class ArchetypeAct2SpotWeaknessNewAge extends ArchetypeBaseIronclad {
                     addToList(cardsList, new EnSpotWeakness());
                     addToList(cardsList, new EnGhostlyArmor(), true);
                     addToList(cardsList, new EnDefendRed()); // Not used
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnemySpotWeaknessPower(p, 3)));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(boss, boss, new EnemySpotWeaknessPower(boss, 3)));
                     theArtOfWar.beginPulse();
                     turn++;
                     break;

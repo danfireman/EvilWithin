@@ -2,6 +2,8 @@ package charbosses.cards.purple;
 
 import charbosses.actions.unique.EnemyChangeStanceAction;
 import charbosses.cards.AbstractBossCard;
+import charbosses.stances.AbstractEnemyStance;
+import charbosses.stances.EnWrathStance;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -15,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class EnEruption extends AbstractBossCard {
+public class EnEruption extends AbstractStanceChangeCard {
     public static final String ID = "downfall_Charboss:Eruption";
     private static final CardStrings cardStrings;
     boolean realWrath = false;
@@ -32,12 +34,12 @@ public class EnEruption extends AbstractBossCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-        if (realWrath) {
-            this.addToBot(new EnemyChangeStanceAction("Real Wrath"));
-        }
-        else {
+//        if (realWrath) {
+//            this.addToBot(new EnemyChangeStanceAction("Real Wrath"));
+//        }
+//        else {
             this.addToBot(new EnemyChangeStanceAction("Wrath"));
-        }
+//        }
     }
 
     @Override
@@ -59,5 +61,10 @@ public class EnEruption extends AbstractBossCard {
 
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("Eruption");
+    }
+
+    @Override
+    public AbstractEnemyStance changeStanceForIntentCalc(AbstractEnemyStance previousStance) {
+        return new EnWrathStance();
     }
 }
