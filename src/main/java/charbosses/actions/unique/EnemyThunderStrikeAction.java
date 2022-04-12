@@ -33,14 +33,13 @@ public class EnemyThunderStrikeAction extends AbstractGameAction {
         }
 
         if (this.target != null) {
-            this.card.calculateCardDamage((AbstractMonster)this.target);
-            this.addToTop(new DamageAction(this.target, new DamageInfo(AbstractDungeon.player, this.card.damage, this.card.damageTypeForTurn), AttackEffect.NONE));
+            this.addToTop(new DamageAction(this.target, new DamageInfo(card.owner, card.damage, card.damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
+            this.isDone = true;
             this.addToTop(new VFXAction(new LightningEffect(this.target.drawX, this.target.drawY)));
             this.addToTop(new VFXAction(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect)));
             this.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE", 0.1F));
         }
 
-        this.isDone = true;
     }
 
 }

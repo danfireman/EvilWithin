@@ -6,6 +6,7 @@ import charbosses.orbs.AbstractEnemyOrb;
 import charbosses.orbs.EnemyLightning;
 import charbosses.orbs.EnemyPlasma;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class EnMeteorStrike extends AbstractBossCard {
         this.baseMagicNumber = 3;
         this.magicNumber = this.baseMagicNumber;
         this.baseDamage = 24;
+        this.tags.add(CardTags.STRIKE);
     }
 
     @Override
@@ -39,6 +42,9 @@ public class EnMeteorStrike extends AbstractBossCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) { // TODO: SFX
+        if (p != null) {
+            this.addToBot(new VFXAction(new WeightyImpactEffect(p.hb.cX, p.hb.cY)));
+        }
         this.addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         for (int i = 0; i < this.magicNumber; ++i) {

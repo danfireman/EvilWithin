@@ -27,7 +27,7 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
     public ArchetypeAct3InserterNewAge() {
         super("DF_ARCHETYPE_ORBS", "Inserter");
 
-        maxHPModifier += 350;
+        maxHPModifier += 330;
         actNum = 3;
         bossMechanicName = DefectCuriosityLightningPower.NAME;
         bossMechanicDesc = DefectCuriosityLightningPower.DESCRIPTIONS[0] + 1 + DefectCuriosityLightningPower.DESCRIPTIONS[1];
@@ -44,33 +44,11 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
     public void initialize() {
 
         addRelic(new CBR_NeowsBlessing());
-        addRelic(new CBR_DataDisk());
+        addRelic(new CBR_StrikeDummy());  // TODO: Data disk instead?
         addRelic(new CBR_IceCream());
-        addRelic(new CBR_StrikeDummy());
+        addRelic(new CBR_ChemicalX());
         addRelic(new CBR_Inserter());
-
-    }
-
-    public static void increasePretendFocus(int amount) {
-        for (AbstractOrb o : AbstractCharBoss.boss.orbs) {
-            if (o instanceof AbstractEnemyOrb) {
-                ((AbstractEnemyOrb) o).pretendFocus += amount;
-                AbstractEnemyOrb.masterPretendFocus += amount;
-                o.applyFocus();
-                //((AbstractEnemyOrb) o).applyLockOn();
-            }
-        }
-    }
-
-    public static void resetPretendFocus() {
-        for (AbstractOrb o : AbstractCharBoss.boss.orbs) {
-            if (o instanceof AbstractEnemyOrb) {
-                ((AbstractEnemyOrb) o).pretendFocus = 0;
-                AbstractEnemyOrb.masterPretendFocus = 0;
-                o.applyFocus();
-                //((AbstractEnemyOrb) o).applyLockOn();
-            }
-        }
+        ArchetypeAct3OrbsNewAge.resetPretendFocus();  // In case the player quits mid fight
     }
 
     int loops = 0;
@@ -88,7 +66,7 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                 case 0:
                     // No Orbs
                     addToList(cardsList, new EnFusion(), true);
-                    addToList(cardsList, new EnBallLightning());
+                    addToList(cardsList, new EnBallLightning(), extraUpgrades);
                     addToList(cardsList, new EnClumsy());
                     // Plasma Lightning
                     turn++;
@@ -96,6 +74,13 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                 case 1:
                     //Turn 2 - 3E
                     // Plasma Lightning
+                    addToList(cardsList, new EnDoubleEnergy(3), true);
+                    addToList(cardsList, new EnDoubleEnergy(3), true);
+                    addToList(cardsList, new EnDefragment());
+                    ArchetypeAct3OrbsNewAge.increasePretendFocus(1);
+                    addToList(cardsList, new EnThunderStrike(EnThunderStrike.getLightningCount()), false);
+
+
                     addToList(cardsList, new EnColdSnap());
                     // Plasma Lightning Frost
                     addToList(cardsList, new EnBarrage(3), extraUpgrades);
@@ -106,9 +91,14 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                     //Turn 3 3E
                     // Plasma Lightning Frost
                     addToList(cardsList, new EnDoubleEnergy(3), true);
+                    addToList(cardsList, new EnDoubleEnergy(3), true);
+                    addToList(cardsList, new EnThunderStrike(EnThunderStrike.getLightningCount()), false);
+
+
+                    addToList(cardsList, new EnDoubleEnergy(3), true);
                     // Lightning Frost
                     addToList(cardsList, new EnRebound());
-                    addToList(cardsList, new EnMeteorStrike());
+                    addToList(cardsList, new EnMeteorStrike(), false);
                     // Frost Plasma Plasma Plasma
                     turn++;
                     break;
@@ -120,18 +110,18 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                     cB.orbsAsEn().get(0).evokeOverride = true;
                     cB.orbsAsEn().get(0).evokeMult = 2;
                     // Frost Plasma Plasma Plasma 8E
-                    addToList(cardsList, new EnMeteorStrike());
+                    addToList(cardsList, new EnMeteorStrike(), false);
                     addToList(cardsList, new EnZap());
                     // Plasma Plasma Plasma Plasma Lightning 6E
                     turn++;
                     break;
                 case 4:
                     //Turn 5 12E
-                    addToList(cardsList, new EnDefragment(), extraUpgrades);
-                    increasePretendFocus(extraUpgrades?2:1);
+                    addToList(cardsList, new EnDefragment(), true);
+                    ArchetypeAct3OrbsNewAge.increasePretendFocus(true?2:1); // TODO: Data disc instead?
                     addToList(cardsList, new EnThunderStrike(EnThunderStrike.getLightningCount()), false); // TODO: Make auto-update
                     // Plasma Plasma Plasma Plasma Lightning 8E
-                    addToList(cardsList, new EnReinforcedBody(this.cB.energyPanel.getCurrentEnergy() - 4)); // TODO: Dynamic calculation
+                    addToList(cardsList, new EnReinforcedBody(this.cB.energyPanel.getCurrentEnergy() - 4), true); // TODO: Dynamic calculation
                     // Plasma Plasma Plasma Plasma Lightning 0E
                     turn = 0;
                     looped = true;
@@ -154,7 +144,7 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                     addToList(cardsList, new EnColdSnap());
                     // first round: Plasma Plasma Plasma Plasma Lightning Frost 8E
                     addToList(cardsList, new EnBarrage(Math.min(this.cB.maxOrbs, this.cB.filledOrbCount() + 1)), extraUpgrades);
-                    addToList(cardsList, new EnReinforcedBody(this.cB.energyPanel.getCurrentEnergy() - 2)); // TODO: Dynamic calculation
+                    addToList(cardsList, new EnReinforcedBody(this.cB.energyPanel.getCurrentEnergy() - 2), true); // TODO: Dynamic calculation
                     // first round: Plasma Plasma Plasma Plasma Lightning Frost 0E
                     turn++;
                     break;
@@ -172,10 +162,10 @@ public class ArchetypeAct3InserterNewAge extends ArchetypeBaseDefect {
                 case 3:
                     // first round: Plasma Plasma Plasma Lightning Frost Plasma Lightning 13E
                     // second round (turn 13): Plasma Lightning Plasma Plasma Plasma Lightning Frost Plasma Lightning 10E
-                    addToList(cardsList, new EnMeteorStrike());
+                    addToList(cardsList, new EnMeteorStrike(), false);
                     // first round: Lightning Frost Plasma Lightning Plasma Plasma Plasma 14E
                     addToList(cardsList, new EnThunderStrike(EnThunderStrike.getLightningCount()), false); // TODO: Make auto-update
-                    addToList(cardsList, new EnBallLightning());
+                    addToList(cardsList, new EnBallLightning(), extraUpgrades);
                     // first round: Frost Plasma Lightning Plasma Plasma Plasma Lightning 10E
                     turn = 0;
                     looped = true;

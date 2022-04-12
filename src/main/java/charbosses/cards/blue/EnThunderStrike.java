@@ -31,8 +31,10 @@ public class EnThunderStrike extends AbstractBossCard {
         super(ID, cardStrings.NAME, "blue/attack/thunder_strike", 3, cardStrings.DESCRIPTION, CardType.ATTACK, CardColor.BLUE, CardRarity.RARE, CardTarget.ENEMY, AbstractMonster.Intent.ATTACK);
         this.baseDamage = 7;
         this.isMultiDamage = true;
-        this.magicNumber = hitCount;
+        this.baseMagicNumber = hitCount;
+        this.magicNumber = baseMagicNumber;
         intentMultiAmt = this.magicNumber;
+        this.tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -58,7 +60,7 @@ public class EnThunderStrike extends AbstractBossCard {
     public void applyPowers() {
         super.applyPowers();
         this.baseMagicNumber = getLightningCount();
-        this.magicNumber = 0;
+        this.magicNumber = baseMagicNumber;
 
         if (this.baseMagicNumber > 0) {
             this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
