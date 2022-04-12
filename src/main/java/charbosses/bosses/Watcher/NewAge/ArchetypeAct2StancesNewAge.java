@@ -27,7 +27,7 @@ public class ArchetypeAct2StancesNewAge extends ArchetypeBaseWatcher {
 
     public ArchetypeAct2StancesNewAge() {
         super("WA_ARCHETYPE_STANCES", "Stances");
-        maxHPModifier += 160;
+        maxHPModifier += 178;
         actNum = 2;
         bossMechanicName = WatcherSkillPower.NAME;
         bossMechanicDesc = WatcherSkillPower.DESCRIPTIONS[2];
