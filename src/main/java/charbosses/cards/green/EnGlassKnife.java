@@ -24,9 +24,10 @@ public class EnGlassKnife extends AbstractBossCard {
     public EnGlassKnife() {
         super(ID, EnGlassKnife.cardStrings.NAME, "green/attack/glass_knife", 1, EnGlassKnife.cardStrings.DESCRIPTION, CardType.ATTACK, CardColor.GREEN, CardRarity.RARE, CardTarget.ENEMY, AbstractMonster.Intent.ATTACK);
         this.baseDamage = 8;
-        baseMagicNumber = magicNumber = 2;
-        this.intentMultiAmt = 2;
-        isMultiDamage = true;
+        this.magicNumber = this.baseMagicNumber = 2;
+        intentMultiAmt = 2;
+        this.isMultiDamage = true;
+        this.cost = cost;
     }
 
 

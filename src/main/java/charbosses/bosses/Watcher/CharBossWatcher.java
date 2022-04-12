@@ -2,9 +2,7 @@ package charbosses.bosses.Watcher;
 
 import charbosses.bosses.AbstractBossDeckArchetype;
 import charbosses.bosses.AbstractCharBoss;
-import charbosses.bosses.Watcher.NewAge.ArchetypeAct1RetainNewAge;
-import charbosses.bosses.Watcher.NewAge.ArchetypeAct2CalmNewAge;
-import charbosses.bosses.Watcher.NewAge.ArchetypeAct3DivinityNewAge;
+import charbosses.bosses.Watcher.NewAge.*;
 import charbosses.core.EnemyEnergyManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -105,7 +103,7 @@ public class CharBossWatcher extends AbstractCharBoss {
                     archetype = new ArchetypeAct1RetainNewAge();
                     break;
                 case 2:
-                    archetype = new ArchetypeAct2CalmNewAge();
+                    archetype = new ArchetypeAct2StancesNewAge();
                     break;
                 case 3:
                     archetype = new ArchetypeAct3DivinityNewAge();
@@ -116,7 +114,7 @@ public class CharBossWatcher extends AbstractCharBoss {
                             archetype = new ArchetypeAct1RetainNewAge();
                             break;
                         case 1:
-                            archetype = new ArchetypeAct2CalmNewAge();
+                            archetype = new ArchetypeAct2StancesNewAge();
                             break;
                         case 2:
                             archetype = new ArchetypeAct3DivinityNewAge();

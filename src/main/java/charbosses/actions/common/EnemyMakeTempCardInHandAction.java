@@ -4,6 +4,7 @@ import charbosses.actions.vfx.cardmanip.EnemyShowCardAndAddToDiscardEffect;
 import charbosses.actions.vfx.cardmanip.EnemyShowCardAndAddToHandEffect;
 import charbosses.bosses.AbstractCharBoss;
 import charbosses.cards.AbstractBossCard;
+import charbosses.cards.purple.EnSmite;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
@@ -86,7 +87,7 @@ public class EnemyMakeTempCardInHandAction extends AbstractGameAction {
             this.addToTop(new WaitAction(0.8f));
         }
         AbstractCharBoss.boss.preApplyIntentCalculations();
-        //AbstractDungeon.actionManager.addToBottom(new CharbossSortHandAction());
+//            AbstractDungeon.actionManager.addToBottom(new CharbossSortHandAction());
         this.isDone = true;
     }
 

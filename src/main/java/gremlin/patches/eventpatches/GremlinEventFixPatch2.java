@@ -19,7 +19,7 @@ import gremlin.patches.GremlinEnum;
 public class GremlinEventFixPatch2 {
     public static boolean insideDamage = false;
     public static SpireReturn Prefix(AbstractPlayer __instance, DamageInfo param) {
-        System.out.println("DAMAGE CHECK: " + insideDamage + " " + param.output);
+//        System.out.println("DAMAGE CHECK: " + insideDamage + " " + param.output);
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT && !insideDamage && AbstractDungeon.player.chosenClass == GremlinEnum.GREMLIN && AbstractDungeon.getCurrRoom() instanceof EventRoom && WhatMod.findModID(AbstractDungeon.getCurrRoom().event.getClass()) != null) {
             insideDamage = true;
             ((GremlinCharacter) AbstractDungeon.player).damageGremlins((param.output + 4) / 5);

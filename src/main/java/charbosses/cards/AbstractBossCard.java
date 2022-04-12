@@ -5,11 +5,15 @@ import basemod.abstracts.CustomCard;
 import charbosses.bosses.AbstractCharBoss;
 import charbosses.bosses.Watcher.CharBossWatcher;
 import charbosses.cards.colorless.EnHandOfGreedHermitNecro;
-import charbosses.cards.purple.EnCarveReality;
-import charbosses.cards.purple.EnSmite;
+import charbosses.cards.purple.*;
 import charbosses.orbs.AbstractEnemyOrb;
+import charbosses.powers.cardpowers.EnemyFearNoEvilPower;
 import charbosses.powers.cardpowers.EnemyStormPower;
+import charbosses.powers.cardpowers.EnemyWrathNextTurnPower;
+import charbosses.stances.AbstractEnemyStance;
 import charbosses.stances.EnDivinityStance;
+import charbosses.stances.EnRealWrathStance;
+import charbosses.stances.EnWrathStance;
 import charbosses.ui.EnemyEnergyPanel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -34,6 +38,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EvolvePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.DebuffParticleEffect;
@@ -312,9 +317,11 @@ public abstract class AbstractBossCard extends AbstractCard {
         }
         if (mo != null) {
             this.damage = MathUtils.floor(calculateDamage(mo, player, this.baseDamage));
-            this.intentDmg = MathUtils.floor(manualCustomDamageModifierMult * calculateDamage(mo, player, this.baseDamage + customIntentModifiedDamage() + manualCustomDamageModifier));
+            this.intentDmg = MathUtils.floor(1.0F * manualCustomDamageModifierMult * calculateDamage(mo, player, this.baseDamage + customIntentModifiedDamage() + manualCustomDamageModifier));
             if (this instanceof EnCarveReality) {
+                System.out.println("Is carve reality");
                 if (((EnCarveReality)this).willUseSmite) {
+                    System.out.println("will use smite");
                     EnSmite enSmite = new EnSmite();
                     enSmite.calculateCardDamage(this.owner);
                     this.intentDmg += enSmite.intentDmg;
@@ -324,6 +331,14 @@ public abstract class AbstractBossCard extends AbstractCard {
         this.initializeDescription();
     }
 
+    static private float wrathMultiForStance(AbstractEnemyStance stance) {
+        switch (stance.ID) {
+            case EnWrathStance.STANCE_ID: return 1.5F;
+            case EnRealWrathStance.STANCE_ID: return 2.0F;
+            default: return 1.0F;
+        }
+    }
+
     private float calculateDamage(AbstractMonster mo, AbstractPlayer player, float tmp) {
         for (final AbstractRelic r : this.owner.relics) {
             tmp = r.atDamageModify(tmp, this);
@@ -331,10 +346,20 @@ public abstract class AbstractBossCard extends AbstractCard {
                 this.isDamageModified = true;
             }
         }
+        if (this.owner != null && this.owner.stance != null) {
+//            if (this.owner.stance instanceof EnRealWrathStance) {
+//                tmp = tmp * 2F;
+//            }
+            // Already covered by the custom power
+//            if (this.owner.stance instanceof EnWrathStance) {
+//                tmp = tmp * 1.5F;
+//            }
+        }
         for (final AbstractPower p : this.owner.powers) {
             tmp = p.atDamageGive(tmp, this.damageTypeForTurn, this);
         }
-        tmp = this.owner.stance.atDamageGive(tmp, this.damageTypeForTurn, this);
+        AbstractEnemyStance stanceAtCardPlay = getEnemyStanceAtMomentOfCardPlay();
+        tmp = stanceAtCardPlay.atDamageGive(tmp, this.damageTypeForTurn, this);
         if (this.baseDamage != (int) tmp) {
             this.isDamageModified = true;
         }
@@ -367,6 +392,24 @@ public abstract class AbstractBossCard extends AbstractCard {
             this.isDamageModified = true;
         }
         return tmp;
+    }
+
+    private AbstractEnemyStance getEnemyStanceAtMomentOfCardPlay() {
+        AbstractEnemyStance stanceAtCardPlay = (AbstractEnemyStance) this.owner.stance;
+        for (final AbstractPower p : this.owner.powers) {
+            if (p instanceof EnemyWrathNextTurnPower) {
+                stanceAtCardPlay = ((EnemyWrathNextTurnPower)p).getWrathStance();
+            }
+        }
+        for (AbstractCard card : this.owner.hand.group) {
+            if (this == card) {
+                break;
+            }
+            if (card instanceof AbstractStanceChangeCard) {
+                stanceAtCardPlay = ((AbstractStanceChangeCard) card).changeStanceForIntentCalc(stanceAtCardPlay);
+            }
+        }
+        return stanceAtCardPlay;
     }
 
     public void triggerOnEndOfPlayerTurn() {

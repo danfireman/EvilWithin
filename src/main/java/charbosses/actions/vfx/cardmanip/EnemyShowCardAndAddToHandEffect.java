@@ -44,6 +44,7 @@ public class EnemyShowCardAndAddToHandEffect extends AbstractGameEffect {
         card.untip();
         ArrayList<AbstractCard> group = AbstractCharBoss.boss.hand.group;
         if (card.name.equals("Smite")) {
+            System.out.println("Card is smite");
             group.add(group.size(), card);
         }
         else {

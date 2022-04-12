@@ -37,7 +37,13 @@ public class EnReinforcedBody extends AbstractBossCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int realCost = this.owner.energyPanel.getCurrentEnergy();
-        for (int i = 0; i < realCost; i++) {
+        int blockGainCount = realCost;
+        if (this.owner.hasRelic("Chemical X")) {
+            blockGainCount += 2;
+            this.owner.getRelic("Chemical X").flash();
+        }
+
+        for (int i = 0; i < blockGainCount; i++) {
             this.addToBot(new GainBlockAction(m, m, this.block));
         }
         // TODO: ew

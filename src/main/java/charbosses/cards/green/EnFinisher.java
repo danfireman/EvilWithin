@@ -101,6 +101,6 @@ public class EnFinisher extends AbstractBossCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new EnFinisher();
+        return new EnFinisher(3);
     }
 }

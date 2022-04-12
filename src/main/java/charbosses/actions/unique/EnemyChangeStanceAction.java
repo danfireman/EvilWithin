@@ -2,6 +2,8 @@ package charbosses.actions.unique;
 
 
 import charbosses.bosses.AbstractCharBoss;
+import charbosses.bosses.Watcher.NewAge.ArchetypeAct2StancesNewAge;
+import charbosses.powers.cardpowers.EnemyMentalFortressPower;
 import charbosses.stances.AbstractEnemyStance;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -27,6 +29,7 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
     }
 
     public void update() {
+        EnemyMentalFortressPower.logger.info("stance change action");
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (AbstractCharBoss.boss != null) {
                 if (AbstractCharBoss.boss.hasPower("CannotChangeStancePower")) {
@@ -36,7 +39,9 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
                 }
 
                 AbstractEnemyStance oldStance = (AbstractEnemyStance) AbstractCharBoss.boss.stance;
+                EnemyMentalFortressPower.logger.info("Starting stance change action");
                 if (!oldStance.ID.equals(this.id)) {
+                    EnemyMentalFortressPower.logger.info("Stance change started");
                     if (this.newStance == null) {
                         this.newStance = AbstractEnemyStance.getStanceFromName(this.id);
                     }
@@ -45,6 +50,8 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
 
                     while (var2.hasNext()) {
                         AbstractPower p = (AbstractPower) var2.next();
+                        EnemyMentalFortressPower.logger.info("Activating on change stance for power " + p);
+                        EnemyMentalFortressPower.logger.info("OldStance " + oldStance + " & " + oldStance.ID);
                         p.onChangeStance(oldStance, this.newStance);
                     }
 
