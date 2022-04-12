@@ -5,14 +5,23 @@ import basemod.abstracts.CustomCard;
 import charbosses.bosses.AbstractCharBoss;
 import charbosses.bosses.Watcher.CharBossWatcher;
 import charbosses.cards.colorless.EnHandOfGreedHermitNecro;
+<<<<<<< HEAD
 import charbosses.cards.purple.*;
+=======
+import charbosses.cards.purple.AbstractStanceChangeCard;
+import charbosses.cards.purple.EnCarveReality;
+import charbosses.cards.purple.EnSmite;
+>>>>>>> stanceDanceWatcher2
 import charbosses.orbs.AbstractEnemyOrb;
 import charbosses.powers.cardpowers.EnemyFearNoEvilPower;
 import charbosses.powers.cardpowers.EnemyStormPower;
 import charbosses.powers.cardpowers.EnemyWrathNextTurnPower;
 import charbosses.stances.AbstractEnemyStance;
 import charbosses.stances.EnDivinityStance;
+<<<<<<< HEAD
 import charbosses.stances.EnRealWrathStance;
+=======
+>>>>>>> stanceDanceWatcher2
 import charbosses.stances.EnWrathStance;
 import charbosses.ui.EnemyEnergyPanel;
 import com.badlogic.gdx.Gdx;
