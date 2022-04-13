@@ -45,7 +45,7 @@ public class ArchetypeAct2StancesNewAge extends ArchetypeBaseWatcher {
        /////   RELICS   /////
 
         addRelic(new CBR_NeowsBlessing());
-        addRelic(new CBR_HornCleat());
+        addRelic(new CBR_Anchor());
         addRelic(new CBR_TungstenRod());
         addRelic(new CBR_BagOfMarbles());
 
@@ -59,7 +59,7 @@ public class ArchetypeAct2StancesNewAge extends ArchetypeBaseWatcher {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new EnMentalFortress(), false);
+                    addToList(cardsList, new EnMentalFortress(), true);
                     addToList(cardsList, new EnTantrum(), false);
                     addToList(cardsList, new EnDoubt());
                     turn++;
